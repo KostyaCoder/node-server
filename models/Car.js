@@ -30,8 +30,13 @@ class Car {
     return newCar;
   }
 
-  static async findAll(){
+  static async findAll() {
     return carsDb;
+  }
+
+  static async findById(id) {
+    const car = carsDb.find((x) => x.id === id);
+    return car ? car : "Error car not find";
   }
 }
 
