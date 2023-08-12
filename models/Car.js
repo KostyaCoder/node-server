@@ -36,7 +36,11 @@ class Car {
 
   static async findById(id) {
     const car = carsDb.find((x) => x.id === id);
-    return car ? car : "Error car not found";
+    if (car) {
+      return car;
+    } else {
+      throw new Error("Car not found");
+    }
   }
 
   static async updateById(id, newValue) {
@@ -55,7 +59,12 @@ class Car {
     const car = carsDb.find((x) => x.id === id);
     const newCarsDb = carsDb.filter((x) => x.id !== id);
     carsDb = newCarsDb;
-    return car ? car : "Error car not found";
+
+    if (car) {
+      return car;
+    } else {
+      throw new Error("Car not found");
+    }
   }
 }
 

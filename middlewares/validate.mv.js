@@ -5,7 +5,7 @@ const validateCars = async function (req, resp, next) {
     req.car = await CAR_CREATION_SCHEMA.validate(req.body);
     next();
   } catch (error) {
-    resp.send("Error. Invalid data body");
+    next(error);
   }
 };
 
