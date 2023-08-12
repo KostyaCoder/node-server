@@ -1,13 +1,4 @@
-const yup = require("yup");
-
-const CAR_CREATION_SCHEMA = yup.object({
-  model: yup.string().required(),
-  manufacturer: yup.string().required(),
-  yearIssue: yup.number().required(),
-  engineSize: yup.number().required(),
-  bodyType: yup.string().required(),
-  electricVehicles: yup.boolean().required(),
-});
+const { CAR_CREATION_SCHEMA } = require("../validation/cars");
 
 const validateCars = async function (req, resp, next) {
   try {
