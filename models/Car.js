@@ -1,4 +1,4 @@
-const carsDb = [];
+let carsDb = [];
 
 class Car {
   constructor(carData) {
