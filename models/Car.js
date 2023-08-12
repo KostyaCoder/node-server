@@ -51,6 +51,11 @@ class Car {
     return car;
   }
 
+  static async deleteById(id) {
+    const car = carsDb.find((x) => x.id === id);
+    const newCarsDb = carsDb.filter((x) => x.id !== id);
+    carsDb = newCarsDb;
+    return car ? car : "Error car not found";
   }
 }
 
