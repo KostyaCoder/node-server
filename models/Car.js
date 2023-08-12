@@ -10,6 +10,7 @@ class Car {
       bodyType,
       electricVehicles,
       photo,
+      imagePath,
     } = carData;
 
     this.model = model;
@@ -19,6 +20,7 @@ class Car {
     this.bodyType = bodyType;
     this.electricVehicles = electricVehicles;
     this.photo = photo;
+    this.imagePath = imagePath;
 
     return Promise.resolve(this);
   }
