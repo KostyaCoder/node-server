@@ -12,13 +12,13 @@ class Car {
       photo,
     } = carData;
 
-    (this.model = model),
-      (this.manufacturer = manufacturer),
-      (this.yearIssue = yearIssue),
-      (this.engineSize = engineSize),
-      (this.bodyType = bodyType),
-      (this.electricVehicles = electricVehicles),
-      (this.photo = photo);
+    this.model = model;
+    this.manufacturer = manufacturer;
+    this.yearIssue = yearIssue;
+    this.engineSize = engineSize;
+    this.bodyType = bodyType;
+    this.electricVehicles = electricVehicles;
+    this.photo = photo;
 
     return Promise.resolve(this);
   }
