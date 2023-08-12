@@ -20,3 +20,12 @@ module.exports.getCar = async function (req, resp) {
   resp.send(car);
 };
 
+module.exports.updateCar = async function (req, resp) {
+  const {
+    params: { carId },
+    body,
+  } = req;
+  const car = await Car.updateById(+carId, body);
+  resp.send(car);
+};
+
