@@ -1,5 +1,12 @@
 const express = require("express");
 const app = express();
-app.listen(5000, ()=>{
-  console.log('ok');
+const bodyMes = express.json();
+
+app.get("/cars", (req, resp) => {
+  resp.send("get car");
 });
+
+app.post("/cars", bodyMes, (req, resp) => {
+  resp.send(req.body);
+});
+
