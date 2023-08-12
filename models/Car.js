@@ -36,7 +36,21 @@ class Car {
 
   static async findById(id) {
     const car = carsDb.find((x) => x.id === id);
-    return car ? car : "Error car not find";
+    return car ? car : "Error car not found";
+  }
+
+  static async updateById(id, newValue) {
+    const car = carsDb.find((x) => x.id === id);
+    if (car) {
+      for (const [key, value] of Object.entries(newValue)) {
+        car[key] = value;
+      }
+    } else {
+      throw new Error("Car not found");
+    }
+    return car;
+  }
+
   }
 }
 
