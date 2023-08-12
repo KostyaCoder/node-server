@@ -3,6 +3,8 @@ const yup = require("yup");
 const app = express();
 const bodyMes = express.json();
 
+const cars = [];
+
 const CAR_CREATION_SCHEMA = yup.object({
   model: yup.string().required(),
   manufacturer: yup.string().required(),
@@ -27,8 +29,11 @@ app.post(
       resp.send("Error. Invalid data body");
     }
   },
-  (req, resp) => {
-    resp.send(req.car);
+  async (req, resp) => {
+    const { car } = req;
+    car.id = Date.now();
+    cars.push(car);
+    resp.send(car);
   }
 );
 
