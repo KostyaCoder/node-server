@@ -29,3 +29,10 @@ module.exports.updateCar = async function (req, resp) {
   resp.send(car);
 };
 
+module.exports.deleteCar = async function (req, resp) {
+  const {
+    params: { carId },
+  } = req;
+  const car = await Car.deleteById(+carId);
+  resp.send(car);
+};
