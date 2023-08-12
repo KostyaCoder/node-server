@@ -10,3 +10,13 @@ module.exports.getCars = async function (req, resp) {
   const cars = await Car.findAll();
   resp.send(cars);
 };
+
+module.exports.getCar = async function (req, resp) {
+  const {
+    params: { carId },
+  } = req;
+  
+  const car = await Car.findById(+carId);
+  resp.send(car);
+};
+
