@@ -1,14 +1,12 @@
-const cars = [];
+const { Car } = require("../models");
 
 module.exports.createCar = async function (req, resp) {
-  const { car } = req;
-  car.id = Date.now();
-  cars.push(car);
+  const { car: carData } = req;
+  const car = await Car.create(carData);
   resp.send(car);
 };
 
 module.exports.getCars = async function (req, resp) {
+  const cars = await Car.findAll();
   resp.send(cars);
 };
-
-module.exports.cars = cars;
