@@ -16,8 +16,20 @@ app.get("/cars", (req, resp) => {
   resp.send("get car");
 });
 
-app.post("/cars", bodyMes, (req, resp) => {
-  resp.send(req.body);
-});
+app.post(
+  "/cars",
+  bodyMes,
+  async (req, resp, next) => {
+    try {
+      req.car = await CAR_CREATION_SCHEMA.validate(req.body);
+      next();
+    } catch (error) {
+      resp.send("Error. Invalid data body");
+    }
+  },
+  (req, resp) => {
+    resp.send(req.car);
+  }
+);
 
 app.listen(5000);
