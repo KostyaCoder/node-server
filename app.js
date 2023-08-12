@@ -3,5 +3,6 @@ const router = require("./routers");
 const app = express();
 
 app.use(router);
+app.use(express.json());
 
 app.listen(5000);
