@@ -2,18 +2,10 @@ const express = require("express");
 const app = express();
 const bodyMes = express.json();
 const { validateCars } = require("./middlewares/validate.mv");
+const CarsController = require("./controllers/cars.controller");
 
-const cars = [];
+app.get("/cars", CarsController.getCars);
 
-app.get("/cars", (req, resp) => {
-  resp.send("get car");
-});
-
-app.post("/cars", bodyMes, validateCars, async (req, resp) => {
-  const { car } = req;
-  car.id = Date.now();
-  cars.push(car);
-  resp.send(car);
-});
+app.post("/cars", bodyMes, validateCars, CarsController.createCar);
 
 app.listen(5000);
