@@ -9,4 +9,13 @@ const CAR_CREATION_SCHEMA = yup.object({
   electricVehicles: yup.boolean().required(),
 });
 
+module.exports.CAR_UPDATION_SCHEMA = yup.object({
+  model: yup.string(),
+  manufacturer: yup.string(),
+  yearIssue: yup.number(),
+  engineSize: yup.number(),
+  bodyType: yup.string(),
+  electricVehicles: yup.boolean(),
+});
+
 module.exports.CAR_CREATION_SCHEMA = CAR_CREATION_SCHEMA;

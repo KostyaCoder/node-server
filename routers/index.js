@@ -2,7 +2,10 @@ const multer = require("multer");
 const express = require("express");
 const path = require("path");
 const CarsController = require("../controllers/cars.controller");
-const { validateCars } = require("../middlewares/validate.mv");
+const {
+  validateCars,
+  validateUpdateCar,
+} = require("../middlewares/validate.mv");
 
 const router = express.Router();
 
@@ -25,7 +28,7 @@ router
 router
   .route("/cars/:carId")
   .get(CarsController.getCar)
-  .put(uploade.single("photo"), CarsController.updateCar)
+  .put(uploade.single("photo"), validateUpdateCar, CarsController.updateCar)
   .delete(CarsController.deleteCar);
 
 module.exports = router;
