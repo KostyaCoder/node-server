@@ -5,6 +5,7 @@ const app = express();
 
 app.use(express.json());
 app.use(router);
+app.use(express.static("public"));
 app.use(handleErrors);
 
 app.listen(5000);
