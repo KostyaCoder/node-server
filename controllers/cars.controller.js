@@ -2,9 +2,15 @@ const { Car } = require("../models");
 
 module.exports.createCar = async function (req, resp, next) {
   try {
-    const { car: carData } = req;
-    const car = await Car.create(carData);
-    resp.status(201).send(car);
+    const { car: carData, file } = req;
+
+    if (file) {
+      const car = await Car.create({ ...carData, imagePath: file.filename });
+      resp.status(201).send(car);
+    } else {
+      const car = await Car.create(carData);
+      resp.status(201).send(car);
+    }
   } catch (error) {
     next(error);
   }

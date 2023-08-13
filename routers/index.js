@@ -20,7 +20,7 @@ const uploade = multer({ storage });
 router
   .route("/cars")
   .get(CarsController.getCars)
-  .post(validateCars, CarsController.createCar);
+  .post(uploade.single("photo"), validateCars, CarsController.createCar);
 
 router
   .route("/cars/:carId")
