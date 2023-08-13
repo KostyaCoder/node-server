@@ -1,7 +1,21 @@
+const multer = require("multer");
 const express = require("express");
-const router = express.Router();
+const path = require("path");
 const CarsController = require("../controllers/cars.controller");
 const { validateCars } = require("../middlewares/validate.mv");
+
+const router = express.Router();
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.resolve(__dirname, "..", "public", "images"));
+  },
+  filename: function (req, file, cb) {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+
+const uploade = multer({ storage });
 
 router
   .route("/cars")
@@ -11,7 +25,7 @@ router
 router
   .route("/cars/:carId")
   .get(CarsController.getCar)
-  .put(CarsController.updateCar)
+  .put(uploade.single("photo"), CarsController.updateCar)
   .delete(CarsController.deleteCar);
 
 module.exports = router;

@@ -33,9 +33,19 @@ module.exports.updateCar = async function (req, resp, next) {
     const {
       params: { carId },
       body,
+      file,
     } = req;
-    const car = await Car.updateById(+carId, body);
-    resp.send(car);
+
+    if (file) {
+      const car = await Car.updateById(+carId, {
+        ...body,
+        imagePath: file.filename,
+      });
+      resp.send(car);
+    } else {
+      const car = await Car.updateById(+carId, body);
+      resp.send(car);
+    }
   } catch (error) {
     next(error);
   }
